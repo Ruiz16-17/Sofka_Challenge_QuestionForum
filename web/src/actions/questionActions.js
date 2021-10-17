@@ -1,4 +1,4 @@
-const URL_BASE = 'https://question-and-answer-147ef.web.app';
+const URL_BASE = 'https://glacial-eyrie-04502.herokuapp.com';
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
