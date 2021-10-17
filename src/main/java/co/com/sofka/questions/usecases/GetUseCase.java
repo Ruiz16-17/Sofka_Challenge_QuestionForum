@@ -39,7 +39,7 @@ public class GetUseCase implements Function<String, Mono<QuestionDTO>> {
                 Mono.just(questionDTO).zipWith(
                         answerRepository.findAllByQuestionId(questionDTO.getId())
                                 .map(mapperUtils.mapEntityToAnswer())
-                                .collectSortedList(Comparator.comparing(AnswerDTO::getPosition))
+                                .collectSortedList(Comparator.comparing(AnswerDTO::getPosition).reversed())
                                 ,
                         (question, answers) -> {
                             question.setAnswers(answers);
