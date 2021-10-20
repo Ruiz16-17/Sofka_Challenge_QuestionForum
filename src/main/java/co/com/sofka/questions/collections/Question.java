@@ -9,10 +9,18 @@ public class Question {
     @Id
     private String id;
     private String userId;
+    private String userEmail;
     private String question;
     private String type;
     private String category;
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public String getId() {
         return id;

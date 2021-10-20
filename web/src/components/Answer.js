@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-export const Answer = ({ answer }) => (
-  <aside className="answer">
-    <p>{answer.answer}</p>
-  </aside>
-)
+export const Answer = ({ answer, onLike }) => {
+
+return(
+
+    <aside key={answer.id} className="answer">
+
+        <button onClick={() => onLike(answer)}>+</button>
+        <p>{answer.id}</p>
+      <h3>{answer.position}</h3>
+      <button>-</button>
+      <p>{answer.answer}</p>
+    </aside>
+);
+}

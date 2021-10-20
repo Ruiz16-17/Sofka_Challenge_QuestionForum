@@ -35,6 +35,7 @@ const App = ({ dispatch }) => {
   }
   return (
     <Router>
+    
       {user ?
         <>
           <PrivateNavbar />
@@ -45,6 +46,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/list" component={OwnerQuestionsPage} />
+            <Route exact path="/listFavoritesQuestion" component={OwnerQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
             <Redirect to="/" />

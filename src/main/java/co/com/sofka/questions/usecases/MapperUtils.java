@@ -11,9 +11,10 @@ import java.util.function.Function;
 @Component
 public class MapperUtils {
 
-    public Function<AnswerDTO, Answer> mapperToAnswer() {
+    public Function<AnswerDTO, Answer> mapperToAnswer(String id) {
         return updateAnswer -> {
             var answer = new Answer();
+            answer.setId(id);
             answer.setPosition(updateAnswer.getPosition());
             answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setUserId(updateAnswer.getUserId());
@@ -31,6 +32,7 @@ public class MapperUtils {
             question.setQuestion(updateQuestion.getQuestion());
             question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
+            question.setUserEmail(updateQuestion.getUserEmail());
             return question;
         };
     }
@@ -41,16 +43,18 @@ public class MapperUtils {
                 entity.getUserId(),
                 entity.getQuestion(),
                 entity.getType(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getUserEmail()
         );
     }
 
     public Function<Answer, AnswerDTO> mapEntityToAnswer() {
         return entity -> new AnswerDTO(
-                entity.getId(),
+                entity.getQuestionId(),
                 entity.getUserId(),
                 entity.getAnswer(),
-                entity.getPosition()
+                entity.getPosition(),
+                entity.getId()
         );
     }
 }

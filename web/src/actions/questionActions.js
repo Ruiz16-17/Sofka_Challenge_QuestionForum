@@ -1,8 +1,9 @@
-const URL_BASE = 'https://glacial-eyrie-04502.herokuapp.com';
+const URL_BASE = 'http://localhost:8080';
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
 export const LOADED_FAILURE = 'LOADED_FAILURE'
+export const DELETE = 'DELETE';
 
 export const loading = () => ({ type: LOADING })
 
@@ -10,6 +11,13 @@ export const success = payload => ({
     type: LOADED_SUCCESS,
     payload
 });
+
+export const actionDelete = (payload) => {
+    return {
+        type: DELETE,
+        payload
+    }
+}
 
 export const failure = () => ({ type: LOADED_FAILURE })
 
@@ -78,7 +86,7 @@ export function postQuestion(question) {
 
 export function deleteQuestion(id) {
     return async dispatch => {
-        dispatch(loading())
+        
         try {
             await fetch(`${URL_BASE}/delete/${id}`,
                 {
@@ -89,7 +97,7 @@ export function deleteQuestion(id) {
                     }
                 }
             )
-            dispatch(success({redirect: `/list`}));
+            dispatch(actionDelete(id));
         } catch (error) {
             dispatch(failure())
         }

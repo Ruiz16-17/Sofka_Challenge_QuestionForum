@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { postQuestion } from '../actions/questionActions'
-import { connect } from 'react-redux'
+import { postQuestion } from '../actions/questionActions';
 
-const FormPage = ({ dispatch, loading, redirect, userId }) => {
+const FormPage = ({ dispatch, loading, redirect, userId, userEmail }) => {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
-
+console.log(userEmail);
     const onSubmit = data => {
         data.userId = userId;
+        data.userEmail = userEmail;
         dispatch(postQuestion(data));
     };
 
@@ -26,8 +27,8 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div>
-                    <label for="type">Type</label>
-                    <select {...register("type")} id="">
+                    <label htmlFor="type">Type</label>
+                    <select {...register("type")} id="type">
                         <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
                         <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
                         <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>
@@ -35,7 +36,7 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
                     </select>
                 </div>
                 <div>
-                    <label for="category">Category</label>
+                    <label htmlFor="category">Category</label>
                     <select {...register("category")} id="category">
                         <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
                         <option value="SCIENCES">SCIENCES</option>
@@ -47,7 +48,7 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
                 </div>
 
                 <div>
-                    <label for="question">Question</label>
+                    <label htmlFor="question">Question</label>
                     <textarea id="question" {...register("question", { required: true, maxLength: 300 })} />
                 </div>
                 <button type="submit" className="button" disabled={loading} >{
@@ -63,7 +64,8 @@ const mapStateToProps = state => ({
     loading: state.question.loading,
     redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    userEmail : state.auth.email
 })
 
 export default connect(mapStateToProps)(FormPage)

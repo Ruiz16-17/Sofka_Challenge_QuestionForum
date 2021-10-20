@@ -17,6 +17,8 @@ public class QuestionDTO {
     private String type;
     @NotBlank
     private String category;
+    @NotBlank
+    private String userEmail;
     private List<AnswerDTO> answers;
 
 
@@ -24,24 +26,34 @@ public class QuestionDTO {
 
     }
 
-    public QuestionDTO(String userId, String question, String type, String category) {
+    public QuestionDTO(String userId, String question, String type, String category, String userEmail) {
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.userEmail = userEmail;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category) {
+    public QuestionDTO(String id, String userId, String question, String type, String category, String userEmail) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.userEmail = userEmail;
     }
 
     public List<AnswerDTO> getAnswers() {
         this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
         return answers;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public void setAnswers(List<AnswerDTO> answers) {

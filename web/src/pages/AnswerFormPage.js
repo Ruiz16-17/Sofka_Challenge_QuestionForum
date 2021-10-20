@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import {  fetchQuestion, postAnswer } from '../actions/questionActions'
-import { connect } from 'react-redux'
-import { Question } from '../components/Question'
+import { fetchQuestion, postAnswer } from '../actions/questionActions';
+import { Question } from '../components/Question';
 
-const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId }) => {
+const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId}) => {
     const { register, handleSubmit } = useForm();
     const { id } = match.params
     const history = useHistory();

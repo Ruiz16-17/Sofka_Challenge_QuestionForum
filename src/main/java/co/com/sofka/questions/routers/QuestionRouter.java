@@ -1,5 +1,6 @@
 package co.com.sofka.questions.routers;
 
+import co.com.sofka.questions.Service.SendMailService;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.usecases.*;
@@ -68,7 +69,7 @@ public class QuestionRouter {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> addAnswer(AddAnswerUseCase addAnswerUseCase) {
+    public RouterFunction<ServerResponse> addAnswer(AddAnswerUseCase addAnswerUseCase, SendMailService sendMailService) {
         return route(POST("/add").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(AnswerDTO.class)
                         .flatMap(addAnswerDTO -> addAnswerUseCase.apply(addAnswerDTO)

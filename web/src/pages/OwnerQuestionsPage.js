@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-
-import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
+import { deleteQuestion, fetchOwnerQuestions } from '../actions/questionActions'
 import { Question } from '../components/Question'
+
 
 const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
     useEffect(() => {
@@ -18,7 +18,6 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
     const onDelete = (id) => {
         dispatch(deleteQuestion(id))
     }
-
 
     const renderQuestions = () => {
         if (loading) return <p>Loading questions...</p>

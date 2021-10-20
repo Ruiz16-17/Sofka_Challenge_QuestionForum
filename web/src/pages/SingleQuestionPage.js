@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-
-import { fetchQuestion } from '../actions/questionActions'
-
-import { Question } from '../components/Question'
-import { Answer } from '../components/Answer'
 import { Link } from 'react-router-dom'
+import { likeAnswer } from '../actions/answerActions'
+import { fetchQuestion } from '../actions/questionActions'
+import { Answer } from '../components/Answer'
+import { Question } from '../components/Question'
 
 const SingleQuestionPage = ({
   match,
@@ -16,20 +15,28 @@ const SingleQuestionPage = ({
   userId
 }) => {
   const { id } = match.params
+
   useEffect(() => {
     dispatch(fetchQuestion(id))
   }, [dispatch, id])
 
+  const onLike = (answer) => {
+    dispatch(likeAnswer(answer))
+  }
+
   const renderQuestion = () => {
+    
     if (loading.question) return <p>Loading question...</p>
     if (hasErrors.question) return <p>Unable to display question.</p>
-
     return <Question question={question} />
   }
 
   const renderAnswers = () => {
+    
     return (question.answers && question.answers.length) ? question.answers.map(answer => (
-      <Answer key={answer.id} answer={answer} />
+      
+      <Answer key={answer.id} answer={answer} excerpt onLike={onLike} />
+
     )) : <p>Empty answer!</p>;
   }
 
