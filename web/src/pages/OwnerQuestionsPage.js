@@ -5,6 +5,7 @@ import { Question } from '../components/Question'
 
 
 const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
+
     useEffect(() => {
         dispatch(fetchOwnerQuestions(userId))
     }, [dispatch, userId]);
@@ -16,6 +17,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
     }, [redirect, dispatch, userId]);
 
     const onDelete = (id) => {
+        
         dispatch(deleteQuestion(id))
     }
 
@@ -26,6 +28,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
         return questions.map(question => <Question
             key={question.id}
             question={question}
+            userId= {userId}
             excerpt onDelete={onDelete} />)
     }
 

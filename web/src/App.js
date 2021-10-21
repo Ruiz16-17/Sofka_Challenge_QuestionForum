@@ -7,14 +7,15 @@ import {
   BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import { login, logout } from './actions/authActions';
+import { Footer } from "./components/Footer";
 import { PrivateNavbar, PublicNavbar } from './components/Navbar';
 import AnswerFormPage from './pages/AnswerFormPage';
+import FavoriteQuestionsPage from './pages/FavoriteQuestionsPage';
 import HomePage from './pages/HomePage';
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage';
 import QuestionFormPage from './pages/QuestionFormPage';
 import QuestionsPage from './pages/QuestionsPage';
 import SingleQuestionPage from './pages/SingleQuestionPage';
-
 
 firebase.initializeApp({
   apiKey: "AIzaSyAjvZt_q5ARLKk-1g6ooYQyeJz5hX2wGaM",
@@ -46,7 +47,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/list" component={OwnerQuestionsPage} />
-            <Route exact path="/listFavoritesQuestion" component={OwnerQuestionsPage} />
+            <Route exact path="/listFavoritesQuestion" component={FavoriteQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
             <Redirect to="/" />
@@ -65,6 +66,7 @@ const App = ({ dispatch }) => {
           </Switch>
         </>
       }
+      <Footer/>
     </Router>
   )
 }

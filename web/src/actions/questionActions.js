@@ -4,6 +4,7 @@ export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
 export const LOADED_FAILURE = 'LOADED_FAILURE'
 export const DELETE = 'DELETE';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
 
 export const loading = () => ({ type: LOADING })
 
@@ -19,6 +20,13 @@ export const actionDelete = (payload) => {
     }
 }
 
+export const actionAddFavorite = (payload) => {
+    return {
+        type: ADD_FAVORITE,
+        payload
+    }
+}
+
 export const failure = () => ({ type: LOADED_FAILURE })
 
 export function fetchQuestions() {
@@ -30,6 +38,22 @@ export function fetchQuestions() {
             )
             const data = await response.json()
             dispatch(success({ questions: data, redirect: null }))
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
+export function fetchFavoriteQuestions(userId) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(
+                `${URL_BASE}/getOwnerAllFavoriteQuestion/${userId}`
+            )
+            const data = await response.json()
+            
+            dispatch(success({ questions: data , favoriteQuestions:data}))
         } catch (error) {
             dispatch(failure())
         }
@@ -83,6 +107,29 @@ export function postQuestion(question) {
         }
     }
 }
+
+export function postFavoriteQuestion(favoriteQuestion) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/saveFavoriteQuestion`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(favoriteQuestion)
+                }
+            )
+            
+            dispatch(actionAddFavorite(favoriteQuestion));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
 
 export function deleteQuestion(id) {
     return async dispatch => {

@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchQuestions, postFavoriteQuestion } from '../actions/questionActions'
+import { fetchFavoriteQuestions, postFavoriteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
 
-const QuestionsPage = ({ dispatch: dispatch, loading, questions, hasErrors, userId, favoriteQuestions }) => {
-
-    
+const FavoriteQuestionsPage = ({ dispatch, loading, questions, hasErrors, userId,
+    favoriteQuestions }) => {
     useEffect(() => {
-        
-        dispatch(fetchQuestions())
-    }, [dispatch,userId]);
-    
+        dispatch(fetchFavoriteQuestions(userId));
+    }, [dispatch,userId])
+
     const onAddFavoriteQuestion = (questionId,id) => {
         
         const data = {
@@ -29,7 +27,7 @@ const QuestionsPage = ({ dispatch: dispatch, loading, questions, hasErrors, user
             key={question.id}
             question={question}
             userId={userId}
-            favoriteQuestions = {favoriteQuestions}
+            favoriteQuestions={favoriteQuestions}
             onAddFavoriteQuestion={onAddFavoriteQuestion}
             excerpt />)
     }
@@ -45,10 +43,10 @@ const QuestionsPage = ({ dispatch: dispatch, loading, questions, hasErrors, user
 const mapStateToProps = state => ({
     loading: state.question.loading,
     questions: state.question.questions,
-    favoriteQuestion: state.favoriteQuestion.favoriteQuestions,
     hasErrors: state.question.hasErrors,
+    favoriteQuestion: state.favoriteQuestion.favoriteQuestions,
     userId: state.auth.uid
 
-})
+});
 
-export default connect(mapStateToProps)(QuestionsPage)
+export default connect(mapStateToProps)(FavoriteQuestionsPage)
