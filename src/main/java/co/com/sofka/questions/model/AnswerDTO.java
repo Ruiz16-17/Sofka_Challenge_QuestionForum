@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class AnswerDTO {
-    @NotBlank(message = "Debe existir el userId para este objeto")
+    @NotBlank(message = "Id is require")
     private String userId;
     @NotBlank
     private String questionId;

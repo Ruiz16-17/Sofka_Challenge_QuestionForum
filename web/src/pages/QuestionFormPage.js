@@ -7,7 +7,7 @@ import { postQuestion } from '../actions/questionActions';
 const FormPage = ({ dispatch, loading, redirect, userId, userEmail }) => {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
-console.log(userEmail);
+
     const onSubmit = data => {
         data.userId = userId;
         data.userEmail = userEmail;

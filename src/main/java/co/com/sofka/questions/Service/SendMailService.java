@@ -1,8 +1,5 @@
 package co.com.sofka.questions.Service;
 
-import co.com.sofka.questions.model.AnswerDTO;
-import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.usecases.GetUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

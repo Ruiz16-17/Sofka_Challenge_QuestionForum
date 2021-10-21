@@ -1,7 +1,7 @@
-package co.com.sofka.questions.routers;
+package co.com.sofka.questions.routers.answer;
 
 import co.com.sofka.questions.model.AnswerDTO;
-import co.com.sofka.questions.usecases.LikeAnswerUseCase;
+import co.com.sofka.questions.usecases.answer.LikeAnswerUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

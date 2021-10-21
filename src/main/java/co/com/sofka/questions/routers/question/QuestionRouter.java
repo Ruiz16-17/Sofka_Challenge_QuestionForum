@@ -1,9 +1,10 @@
-package co.com.sofka.questions.routers;
+package co.com.sofka.questions.routers.question;
 
 import co.com.sofka.questions.Service.SendMailService;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.usecases.*;
+import co.com.sofka.questions.usecases.answer.AddAnswerUseCase;
+import co.com.sofka.questions.usecases.question.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

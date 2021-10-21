@@ -1,9 +1,11 @@
-package co.com.sofka.questions.usecases;
+package co.com.sofka.questions.usecases.answer;
 
 import co.com.sofka.questions.Service.SendMailService;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.AnswerRepository;
+import co.com.sofka.questions.usecases.question.GetUseCase;
+import co.com.sofka.questions.util.MapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

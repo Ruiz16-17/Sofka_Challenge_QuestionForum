@@ -108,6 +108,8 @@ public class QuestionDTO {
                 ", question='" + question + '\'' +
                 ", type='" + type + '\'' +
                 ", category='" + category + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", answers=" + answers +
                 '}';
     }
 
@@ -116,11 +118,11 @@ public class QuestionDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuestionDTO that = (QuestionDTO) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(question, that.question) && Objects.equals(type, that.type) && Objects.equals(category, that.category) && Objects.equals(userEmail, that.userEmail) && Objects.equals(answers, that.answers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, userId, question, type, category, userEmail, answers);
     }
 }
