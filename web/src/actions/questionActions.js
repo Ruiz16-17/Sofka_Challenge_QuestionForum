@@ -61,8 +61,8 @@ export function fetchFavoriteQuestions(userId) {
                 `${URL_BASE}/getOwnerAllFavoriteQuestion/${userId}`
             )
             const data = await response.json()
-            
-            dispatch(success({ favoriteQuestions : data }))
+
+            dispatch(success({ favoriteQuestions: data }))
         } catch (error) {
             dispatch(failure())
         }
@@ -100,7 +100,7 @@ export function postQuestion(question) {
     return async dispatch => {
         dispatch(loading())
         try {
-            
+
             const response = await fetch(`${URL_BASE}/create`,
                 {
                     method: 'POST',
@@ -112,7 +112,7 @@ export function postQuestion(question) {
                 }
             )
             const id = await response.text()
-            dispatch(success({redirect: `/question/${id}`}));
+            dispatch(success({ redirect: `/question/${id}` }));
         } catch (error) {
             dispatch(failure())
         }
@@ -122,8 +122,8 @@ export function postQuestion(question) {
 export function postFavoriteQuestion(favoriteQuestion) {
     return async dispatch => {
         try {
-            if(favoriteQuestion.id === ""){
-                
+            if (favoriteQuestion.id === "") {
+
                 await fetch(`${URL_BASE}/saveFavoriteQuestion`,
                     {
                         method: 'POST',
@@ -134,18 +134,18 @@ export function postFavoriteQuestion(favoriteQuestion) {
                         body: JSON.stringify(favoriteQuestion)
                     }
                 )
-            }else{
+            } else {
 
                 await fetch(`${URL_BASE}/deleteFavoriteQuestion/${favoriteQuestion.id}`,
-                {
-                    method: 'DELETE',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
+                    {
+                        method: 'DELETE',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     }
-                }
-            )
-            
+                )
+
             }
 
             dispatch(actionAddFavorite(favoriteQuestion));
@@ -170,7 +170,7 @@ export function postAnswer(answer) {
                     body: JSON.stringify(answer)
                 }
             )
-            dispatch(success({redirect: `/question/${answer.questionId}`}));
+            dispatch(success({ redirect: `/question/${answer.questionId}` }));
         } catch (error) {
             dispatch(failure())
         }
@@ -179,7 +179,7 @@ export function postAnswer(answer) {
 
 export function deleteQuestion(id) {
     return async dispatch => {
-        
+
         try {
             await fetch(`${URL_BASE}/delete/${id}`,
                 {
@@ -199,7 +199,7 @@ export function deleteQuestion(id) {
 
 export function deleteAnswer(id) {
     return async dispatch => {
-        
+
         try {
             await fetch(`${URL_BASE}/deleteAnswer/${id}`,
                 {

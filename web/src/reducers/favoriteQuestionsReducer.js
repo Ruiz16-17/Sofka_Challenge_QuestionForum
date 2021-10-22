@@ -13,6 +13,7 @@ export default function favoriteQuestionReducer(state = initialState, action) {
       return { ...state, loading: false, hasErrors: true }
     case actionsQuestion.LOADED_SUCCESS:
       return { ...state,...action.payload, loading: false, hasErrors: true }
+      
     default:
       return state
   }

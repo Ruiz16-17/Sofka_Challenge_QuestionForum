@@ -1,5 +1,6 @@
 package co.com.sofka.questions.usecases.question;
 
+import co.com.sofka.questions.collections.FavoriteQuestion;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.FavoriteQuestionRepository;
 import co.com.sofka.questions.reposioties.QuestionRepository;
@@ -47,7 +48,7 @@ public class ListUseCase implements Supplier<Flux<QuestionDTO>> {
                                     .stream()
                                     .filter(favoriteQuestion ->
                                     favoriteQuestion.getQuestionId().equalsIgnoreCase(questionDTO.getId()))
-                                    .map(favoriteQuestion -> favoriteQuestion.getId())
+                                    .map(FavoriteQuestion::getId)
                                     .findFirst();
 
                             if (count > 0) {

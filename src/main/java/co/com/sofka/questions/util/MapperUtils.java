@@ -59,7 +59,6 @@ public class MapperUtils {
         );
     }
 
-
     public Function<FavoriteQuestionDTO, FavoriteQuestion> mapperToFavoriteQuestion(String id) {
         return updateFavoriteQuestion -> {
             var favoriteQuestion = new FavoriteQuestion();

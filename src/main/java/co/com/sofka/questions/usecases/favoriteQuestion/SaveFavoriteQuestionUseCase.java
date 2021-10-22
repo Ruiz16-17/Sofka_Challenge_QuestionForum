@@ -11,14 +11,14 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Validated
-public class SaveOrDeleteFavoriteQuestionUseCase implements SaveFavoriteQuestion {
+public class SaveFavoriteQuestionUseCase implements SaveFavoriteQuestion {
     private final FavoriteQuestionRepository favoriteQuestionRepository;
     private final QuestionRepository questionRepository;
     private final DeleteFavoriteQuestionUseCase deleteFavoriteQuestionUseCase;
     private final MapperUtils mapperUtils;
     private final GetFavoriteQuestionOwnerListUseCase getFavoriteQuestionOwnerListUseCase;
 
-    public SaveOrDeleteFavoriteQuestionUseCase(MapperUtils mapperUtils, FavoriteQuestionRepository favoriteQuestionRepository, QuestionRepository questionRepository, DeleteFavoriteQuestionUseCase deleteFavoriteQuestionUseCase, GetFavoriteQuestionOwnerListUseCase getFavoriteQuestionOwnerListUseCase) {
+    public SaveFavoriteQuestionUseCase(MapperUtils mapperUtils, FavoriteQuestionRepository favoriteQuestionRepository, QuestionRepository questionRepository, DeleteFavoriteQuestionUseCase deleteFavoriteQuestionUseCase, GetFavoriteQuestionOwnerListUseCase getFavoriteQuestionOwnerListUseCase) {
         this.favoriteQuestionRepository = favoriteQuestionRepository;
         this.mapperUtils = mapperUtils;
         this.questionRepository = questionRepository;

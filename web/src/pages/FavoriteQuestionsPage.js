@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchFavoriteQuestions, postFavoriteQuestion } from '../actions/questionActions';
+import { fetchFavoriteQuestions } from '../actions/questionActions';
 import { Question } from '../components/Question';
 
 
@@ -9,16 +9,6 @@ const FavoriteQuestionsPage = ({ dispatch, loading, questions, hasErrors, userId
     useEffect(() => {
         dispatch(fetchFavoriteQuestions(userId));
     }, [dispatch, userId])
-
-    const onAddFavoriteQuestion = (questionId, id) => {
-
-        const data = {
-            userId: id,
-            questionId: questionId
-        };
-
-        dispatch(postFavoriteQuestion(data));
-    };
 
     const renderQuestions = () => {
         if (loading) return <p>Loading questions...</p>
@@ -31,7 +21,6 @@ const FavoriteQuestionsPage = ({ dispatch, loading, questions, hasErrors, userId
                 key={question.id}
                 question={question}
                 userId={userId}
-                onAddFavoriteQuestion={onAddFavoriteQuestion}
                 excerpt />)
             :
             <p>Has not added favorites.</p>

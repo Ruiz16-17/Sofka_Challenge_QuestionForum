@@ -24,7 +24,7 @@ export const Question = ({ question, excerpt, onDelete, userId, onAddFavoriteQue
 
     {
 
-      userId && (
+      userId && onAddFavoriteQuestion &&(
 
         <button className={
           question.favorite
