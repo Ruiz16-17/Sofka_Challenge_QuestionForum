@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { likeAnswer } from '../actions/answerActions'
 import { fetchQuestion } from '../actions/questionActions'
 import { Answer } from '../components/Answer'
 import { Question } from '../components/Question'
@@ -20,10 +19,6 @@ const SingleQuestionPage = ({
     dispatch(fetchQuestion(id))
   }, [dispatch, id])
 
-  const onLike = (answer) => {
-    dispatch(likeAnswer(answer))
-  }
-
   const renderQuestion = () => {
     
     if (loading.question) return <p>Loading question...</p>
@@ -35,7 +30,7 @@ const SingleQuestionPage = ({
     
     return (question.answers && question.answers.length) ? question.answers.map(answer => (
       
-      <Answer key={answer.id} answer={answer} excerpt onLike={onLike} />
+      <Answer key={answer.id} answer={answer} excerpt/>
 
     )) : <p>Empty answer!</p>;
   }

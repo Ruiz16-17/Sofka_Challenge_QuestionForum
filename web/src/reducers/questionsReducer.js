@@ -1,4 +1,3 @@
-import * as actionsAnswer from '../actions/answerActions';
 import * as actionsQuestion from '../actions/questionActions';
 
 export const initialState = {
@@ -8,7 +7,8 @@ export const initialState = {
   question: {
     answer: []
   },
-  redirect: null
+  redirect: null,
+  isFavorite : false
 }
 
 export default function questionsReducer(state = initialState, action) {
@@ -21,18 +21,9 @@ export default function questionsReducer(state = initialState, action) {
       return { ...state, loading: false, hasErrors: true }
     case actionsQuestion.DELETE:
       return { ...state, questions: state.questions.filter(question => question.id !== action.payload) }
-    case actionsAnswer.LIKE:
-      const questionUpdate = state.question;
-      const updateAnswerList = questionUpdate.answers.map(answer => { return { ...answer, position: answer.position + 1 } })
-      questionUpdate.answers = updateAnswerList;
-      // console.log(updateAnswerList);
-      // console.log(action);
-      // console.log(state.question)
-      // console.log(state.question); 
-      //console.log(state.question);
-      //console.log(questionUpdate);
-      //console.log(questionUpdate);
-      return { ...state ,answer : updateAnswerList,loading: false, hasErrors: false  }
+      case actionsQuestion.ADD_FAVORITE:
+        console.log("asda");
+        return { ...state, isFavorite : true }
     default:
       return state
   }

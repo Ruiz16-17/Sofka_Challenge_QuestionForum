@@ -14,20 +14,23 @@ public class FavoriteQuestionDTO {
     private String userId;
     @NotBlank
     private String questionId;
+    private boolean isFavorite;
 
     public FavoriteQuestionDTO() {
 
     }
 
-    public FavoriteQuestionDTO(String userId, String questionId) {
-        this.userId = userId;
-        this.questionId = questionId;
-    }
-
-    public FavoriteQuestionDTO(String id, String userId, String questionId) {
+    public FavoriteQuestionDTO(String id, String userId, String questionId, boolean isFavorite) {
         this.id = id;
         this.userId = userId;
         this.questionId = questionId;
+        this.isFavorite = isFavorite;
+    }
+
+    public FavoriteQuestionDTO(String userId, String questionId, boolean isFavorite) {
+        this.userId = userId;
+        this.questionId = questionId;
+        this.isFavorite = isFavorite;
     }
 
     public String getId() {
@@ -52,5 +55,13 @@ public class FavoriteQuestionDTO {
 
     public void setQuestionId(String questionId) {
         this.questionId = questionId;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 }

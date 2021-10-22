@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import { login, logout } from './actions/authActions';
+import { fetchFavoriteQuestions } from "./actions/questionActions";
 import { Footer } from "./components/Footer";
 import { PrivateNavbar, PublicNavbar } from './components/Navbar';
 import AnswerFormPage from './pages/AnswerFormPage';
@@ -32,7 +33,8 @@ const auth = firebase.auth();
 const App = ({ dispatch }) => {
   const [user] = useAuthState(auth);
   if(user){
-    dispatch(login(user.email, user.uid))
+    dispatch(fetchFavoriteQuestions(user.uid));
+    dispatch(login(user.email, user.uid));
   }
   return (
     <Router>

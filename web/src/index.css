@@ -114,6 +114,18 @@ textarea {
   background-size: 25px 25px;
 }
 
+
+.black_heart {
+  background-image: url("images/black_heart.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0px;
+  height: 25px;
+  width: 25px;
+  background-size: 25px 25px;
+}
+
 .right {
   float: right;
 }

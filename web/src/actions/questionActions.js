@@ -53,7 +53,7 @@ export function fetchFavoriteQuestions(userId) {
             )
             const data = await response.json()
             
-            dispatch(success({ questions: data , favoriteQuestions:data}))
+            dispatch(success({ favoriteQuestions : data }))
         } catch (error) {
             dispatch(failure())
         }
@@ -110,7 +110,7 @@ export function postQuestion(question) {
 
 export function postFavoriteQuestion(favoriteQuestion) {
     return async dispatch => {
-        dispatch(loading())
+        
         try {
             await fetch(`${URL_BASE}/saveFavoriteQuestion`,
                 {

@@ -11,5 +11,7 @@ import reactor.core.publisher.Mono;
 public interface FavoriteQuestionRepository extends ReactiveCrudRepository<FavoriteQuestion, String> {
     Flux<FavoriteQuestion> findFavoriteQuestionsByUserId(String userId);
 
+    Mono<FavoriteQuestion> findFavoriteQuestionByQuestionId(String userId);
+
     Mono<Void> deleteByQuestionId(String questionId);
 }

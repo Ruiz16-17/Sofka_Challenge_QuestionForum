@@ -66,6 +66,7 @@ public class MapperUtils {
             favoriteQuestion.setId(id);
             favoriteQuestion.setUserId(updateFavoriteQuestion.getUserId());
             favoriteQuestion.setQuestionId(updateFavoriteQuestion.getQuestionId());
+            favoriteQuestion.setFavorite(updateFavoriteQuestion.isFavorite());
             return favoriteQuestion;
         };
     }
@@ -74,7 +75,8 @@ public class MapperUtils {
         return entity -> new FavoriteQuestionDTO(
                 entity.getId(),
                 entity.getUserId(),
-                entity.getQuestionId()
+                entity.getQuestionId(),
+                entity.isFavorite()
         );
     }
 

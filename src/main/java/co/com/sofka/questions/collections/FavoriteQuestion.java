@@ -11,6 +11,7 @@ public class FavoriteQuestion {
     private String id;
     private String userId;
     private String questionId;
+    private boolean isFavorite;
 
     public String getId() {
         return id;
@@ -34,5 +35,13 @@ public class FavoriteQuestion {
 
     public void setQuestionId(String questionId) {
         this.questionId = questionId;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 }

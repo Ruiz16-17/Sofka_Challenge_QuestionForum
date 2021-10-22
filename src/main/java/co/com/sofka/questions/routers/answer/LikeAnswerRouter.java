@@ -13,7 +13,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class AnswerRouter {
+public class LikeAnswerRouter {
 
     @Bean
     public RouterFunction<ServerResponse> likeAnswer(LikeAnswerUseCase likeAnswerUseCase){

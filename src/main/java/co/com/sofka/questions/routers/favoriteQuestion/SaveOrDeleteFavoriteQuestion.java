@@ -1,9 +1,7 @@
 package co.com.sofka.questions.routers.favoriteQuestion;
 
 import co.com.sofka.questions.model.FavoriteQuestionDTO;
-import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.usecases.favoriteQuestion.SaveFavoriteQuestionUseCase;
-import co.com.sofka.questions.usecases.question.CreateUseCase;
+import co.com.sofka.questions.usecases.favoriteQuestion.SaveOrDeleteFavoriteQuestionUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -18,11 +16,11 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class SaveFavoriteQuestion {
+public class SaveOrDeleteFavoriteQuestion {
 
     @Bean
-    public RouterFunction<ServerResponse> createFavoriteQuestion(SaveFavoriteQuestionUseCase saveFavoriteQuestionUseCase) {
-        Function<FavoriteQuestionDTO, Mono<ServerResponse>> executor = favoriteQuestionDTO ->  saveFavoriteQuestionUseCase.apply(favoriteQuestionDTO)
+    public RouterFunction<ServerResponse> createFavoriteQuestion(SaveOrDeleteFavoriteQuestionUseCase saveOrDeleteFavoriteQuestionUseCase) {
+        Function<FavoriteQuestionDTO, Mono<ServerResponse>> executor = favoriteQuestionDTO ->  saveOrDeleteFavoriteQuestionUseCase.saveOrDeleteFavoriteQuestion(favoriteQuestionDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
                         .bodyValue(result));
