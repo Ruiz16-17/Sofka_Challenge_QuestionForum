@@ -1,7 +1,6 @@
 package co.com.sofka.questions.usecases.favoriteQuestion;
 
 import co.com.sofka.questions.model.FavoriteQuestionDTO;
-import co.com.sofka.questions.model.QuestionDTO;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;

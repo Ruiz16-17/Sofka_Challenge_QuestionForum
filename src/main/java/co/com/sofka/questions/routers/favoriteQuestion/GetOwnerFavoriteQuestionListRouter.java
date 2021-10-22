@@ -1,6 +1,5 @@
 package co.com.sofka.questions.routers.favoriteQuestion;
 
-import co.com.sofka.questions.model.FavoriteQuestionDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.usecases.favoriteQuestion.GetFavoriteQuestionOwnerListUseCase;
 import org.springframework.context.annotation.Bean;

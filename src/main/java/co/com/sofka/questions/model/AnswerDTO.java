@@ -1,8 +1,6 @@
 package co.com.sofka.questions.model;
 
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.Optional;
