@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert'
 import { deleteAnswer, fetchQuestion } from '../actions/questionActions'
 import { Answer } from '../components/Answer'
 import { Question } from '../components/Question'
+
 
 const SingleQuestionPage = ({
   match,
@@ -27,7 +29,20 @@ const SingleQuestionPage = ({
   }
 
   const onDelete = (id) => {
-    dispatch(deleteAnswer(id))
+    swal({
+      title:"Are you sure about this?",
+      text:"if you confirm this, the answer will be removed.",
+      icon:"warning",
+      buttons:["Cancell", "Confirm"]
+      }).then(questionToDelete=>{
+          if(questionToDelete){
+              dispatch(deleteAnswer(id))
+              swal({
+                  text:"The answer has been deleted successfully!",
+                  icon:"success"
+              });
+          }
+      });
   }
 
   const renderAnswers = () => {

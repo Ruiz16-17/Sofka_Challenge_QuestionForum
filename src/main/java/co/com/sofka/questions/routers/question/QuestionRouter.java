@@ -1,6 +1,6 @@
 package co.com.sofka.questions.routers.question;
 
-import co.com.sofka.questions.Service.SendMailService;
+import co.com.sofka.questions.service.SendMailService;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.usecases.answer.AddAnswerUseCase;

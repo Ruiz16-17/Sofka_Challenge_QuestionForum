@@ -26,8 +26,9 @@ const FormPage = ({ dispatch, loading, redirect, userId, userEmail }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        const data = {...formState,
-
+        const data = {
+            
+            ...formState,
             userId,
             question:content,
             userEmail : userEmail
