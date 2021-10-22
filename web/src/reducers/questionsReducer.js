@@ -24,21 +24,19 @@ export default function questionsReducer(state = initialState, action) {
 
       return { ...state, question: { ...state.question, answers: state.question.answers.filter(element => element.id !== action.payload) } }
     case actionsQuestion.ADD_FAVORITE:
-       
-      // console.log(action.payload.questionId);
+      
 
       const updateItem = state.questions;
       const listUPdateQuestions = updateItem.map((element) => {
-        
         if(element.id === action.payload.questionId){
           element.favorite = !element.favorite;
-
+          console.log(action.payload.id);
+          element.favoriteQuestionId = action.payload.id;
           return element;
         }
 
         return element;
       })
-
 
   return { ...state, questions: listUPdateQuestions}
     default:

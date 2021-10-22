@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -42,8 +43,16 @@ public class ListUseCase implements Supplier<Flux<QuestionDTO>> {
                                     .filter(favoriteQuestion -> favoriteQuestion.getQuestionId()
                                             .equalsIgnoreCase(questionDTO.getId())).count();
 
+                            Optional<String> idFavoriteQuestion = favoriteQuestions
+                                    .stream()
+                                    .filter(favoriteQuestion ->
+                                    favoriteQuestion.getQuestionId().equalsIgnoreCase(questionDTO.getId()))
+                                    .map(favoriteQuestion -> favoriteQuestion.getId())
+                                    .findFirst();
+
                             if (count > 0) {
                                 question.setFavorite(true);
+                                question.setFavoriteQuestionId(idFavoriteQuestion.orElse(""));
                             }
 
                             return question;

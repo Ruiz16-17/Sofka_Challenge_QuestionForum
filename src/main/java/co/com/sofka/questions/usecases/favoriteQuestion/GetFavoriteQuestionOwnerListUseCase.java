@@ -27,13 +27,6 @@ public class GetFavoriteQuestionOwnerListUseCase {
         this.listUseCase = listUseCase;
     }
 
-    private Flux<String> getAllFavoriteQuestionsIdQuestionByUserId(String userId) {
-        return favoriteQuestionRepository.findFavoriteQuestionsByUserId(userId)
-                .map(mapperUtils.mapEntityToFavoriteQuestion())
-                .map(FavoriteQuestionDTO::getQuestionId);
-
-    }
-
     private Flux<String> getAllFavoriteQuestionsIdByUserId(String userId) {
         return favoriteQuestionRepository.findFavoriteQuestionsByUserId(userId)
                 .map(mapperUtils.mapEntityToFavoriteQuestion())
@@ -45,7 +38,6 @@ public class GetFavoriteQuestionOwnerListUseCase {
         return getAllFavoriteQuestionsIdByUserId(userId)
                 .reduce((s, s2) -> String.valueOf(s2.equalsIgnoreCase(questionId))
                 );
-
 
     }
 

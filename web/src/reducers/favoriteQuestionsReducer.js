@@ -8,8 +8,7 @@ export const initialState = {
 
 export default function favoriteQuestionReducer(state = initialState, action) {
   switch (action.type) {
-    case actionsQuestion.ADD_FAVORITE:
-      return { ...state, ...action.payload, loading: false, hasErrors: false }
+    
     case actionsQuestion.LOADED_FAILURE:
       return { ...state, loading: false, hasErrors: true }
     case actionsQuestion.LOADED_SUCCESS:

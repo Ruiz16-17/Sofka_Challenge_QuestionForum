@@ -22,6 +22,8 @@ public class QuestionDTO {
 
     private boolean isFavorite;
 
+    private String favoriteQuestionId;
+
     private List<AnswerDTO> answers;
 
     public QuestionDTO() {
@@ -57,6 +59,14 @@ public class QuestionDTO {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public String getFavoriteQuestionId() {
+        return favoriteQuestionId = Optional.ofNullable(this.favoriteQuestionId).orElse("");
+    }
+
+    public void setFavoriteQuestionId(String favoriteQuestionId) {
+        this.favoriteQuestionId = favoriteQuestionId;
     }
 
     public String getUserEmail() {

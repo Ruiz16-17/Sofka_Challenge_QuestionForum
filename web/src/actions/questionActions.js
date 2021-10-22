@@ -100,6 +100,7 @@ export function postQuestion(question) {
     return async dispatch => {
         dispatch(loading())
         try {
+            
             const response = await fetch(`${URL_BASE}/create`,
                 {
                     method: 'POST',
@@ -120,19 +121,33 @@ export function postQuestion(question) {
 
 export function postFavoriteQuestion(favoriteQuestion) {
     return async dispatch => {
-        
         try {
-            await fetch(`${URL_BASE}/saveFavoriteQuestion`,
+            if(favoriteQuestion.id === ""){
+                
+                await fetch(`${URL_BASE}/saveFavoriteQuestion`,
+                    {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(favoriteQuestion)
+                    }
+                )
+            }else{
+
+                await fetch(`${URL_BASE}/deleteFavoriteQuestion/${favoriteQuestion.id}`,
                 {
-                    method: 'POST',
+                    method: 'DELETE',
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(favoriteQuestion)
+                    }
                 }
             )
             
+            }
+
             dispatch(actionAddFavorite(favoriteQuestion));
         } catch (error) {
             dispatch(failure())
