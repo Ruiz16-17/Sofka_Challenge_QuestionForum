@@ -11,7 +11,7 @@ export const Footer = () => {
                         <h4>Created by Sebastian Ruiz Gallego</h4>
                         <ul>
                             <li>
-                                <a href="https://github.com/Ruiz16-17">Github Repository</a>
+                                <a href="https://github.com/Ruiz16-17/Sofka_Challenge_QuestionForum" target="_blank">Github Repository</a>
                             </li>
                         </ul>
                     </div>

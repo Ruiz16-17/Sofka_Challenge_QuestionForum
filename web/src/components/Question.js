@@ -7,8 +7,6 @@ export const Question = ({ question, excerpt, onDelete, userId, onAddFavoriteQue
     setCategory(question.category)
   }
 
-  console.log(question.favoriteQuestionId);
-
   return <article className={excerpt ? 'question-excerpt' : 'question'}>
 
     {setCategory ?
