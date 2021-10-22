@@ -32,43 +32,47 @@ const auth = firebase.auth();
 
 const App = ({ dispatch }) => {
   const [user] = useAuthState(auth);
-  if(user){
+  if (user) {
     dispatch(fetchFavoriteQuestions(user.uid));
     dispatch(login(user.email, user.uid));
   }
   return (
     <Router>
-    
-      {user ?
-        <>
-          <PrivateNavbar />
-          <Switch>
-            <Route exact path="/" component={() => {
-              return <HomePage><SignOut dispatch={dispatch} /></HomePage>
-            }} />
-            <Route exact path="/questions" component={QuestionsPage} />
-            <Route exact path="/question/:id" component={SingleQuestionPage} />
-            <Route exact path="/list" component={OwnerQuestionsPage} />
-            <Route exact path="/listFavoritesQuestion" component={FavoriteQuestionsPage} />
-            <Route exact path="/answer/:id" component={AnswerFormPage} />
-            <Route exact path="/new" component={QuestionFormPage} />
-            <Redirect to="/" />
-          </Switch>
-        </> :
-        <>
-          <PublicNavbar />
-          <Switch>
-            <Route exact path="/" component={() => {
-              return <HomePage><SignIn dispatch={dispatch} /></HomePage>
-            }} />
-            <Route exact path="/questions" component={QuestionsPage} />
-            <Route exact path="/question/:id" component={SingleQuestionPage} />
-            <Route exact path="/answer/:id" component={AnswerFormPage} />
-            <Redirect to="/" />
-          </Switch>
-        </>
-      }
-      <Footer/>
+      <div className="container-footer">
+
+        {user ?
+          <div>
+            <PrivateNavbar />
+            <Switch>
+              <Route exact path="/" component={() => {
+                return <HomePage><SignOut dispatch={dispatch} /></HomePage>
+              }} />
+              <Route exact path="/questions" component={QuestionsPage} />
+              <Route exact path="/question/:id" component={SingleQuestionPage} />
+              <Route exact path="/list" component={OwnerQuestionsPage} />
+              <Route exact path="/listFavoritesQuestion" component={FavoriteQuestionsPage} />
+              <Route exact path="/answer/:id" component={AnswerFormPage} />
+              <Route exact path="/new" component={QuestionFormPage} />
+              <Redirect to="/" />
+            </Switch>
+          </div> :
+          <div>
+            <PublicNavbar />
+            <Switch>
+              <Route exact path="/" component={() => {
+                return <HomePage><SignIn dispatch={dispatch} /></HomePage>
+              }} />
+              <Route exact path="/questions" component={QuestionsPage} />
+              <Route exact path="/question/:id" component={SingleQuestionPage} />
+              <Route exact path="/answer/:id" component={AnswerFormPage} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        }
+
+      </div>
+      <Footer />
+
     </Router>
   )
 }

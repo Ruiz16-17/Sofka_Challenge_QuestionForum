@@ -19,8 +19,10 @@ public class QuestionDTO {
     private String category;
     @NotBlank
     private String userEmail;
-    private List<AnswerDTO> answers;
 
+    private boolean isFavorite;
+
+    private List<AnswerDTO> answers;
 
     public QuestionDTO() {
 
@@ -46,6 +48,15 @@ public class QuestionDTO {
     public List<AnswerDTO> getAnswers() {
         this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
         return answers;
+    }
+
+    public boolean isFavorite() {
+        this.isFavorite = Optional.ofNullable(this.isFavorite).orElse(false);
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public String getUserEmail() {

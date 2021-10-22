@@ -11,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.function.Function;
+
 @Service
 @Validated
 public class GetFavoriteQuestionOwnerListUseCase {
@@ -48,8 +50,7 @@ public class GetFavoriteQuestionOwnerListUseCase {
     }
 
     public Flux<QuestionDTO> getAllFavoriteQuestionsByUserId(String userId) {
-        return listUseCase.get()
-                .filterWhen(questionDTO ->
-                        getAllFavoriteQuestionsIdQuestionByUserId(userId).hasElement(questionDTO.getId()));
+        return listUseCase.getMappersQuestions(userId)
+                .filter(QuestionDTO::isFavorite);
     }
 }

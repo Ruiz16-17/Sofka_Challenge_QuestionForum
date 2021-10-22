@@ -4,6 +4,7 @@ export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
 export const LOADED_FAILURE = 'LOADED_FAILURE'
 export const DELETE = 'DELETE';
+export const DELETE_ANSWER = 'DELETE_ANSWER';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 
 export const loading = () => ({ type: LOADING })
@@ -20,6 +21,13 @@ export const actionDelete = (payload) => {
     }
 }
 
+export const actionDeleteAnswer = (payload) => {
+    return {
+        type: DELETE_ANSWER,
+        payload
+    }
+}
+
 export const actionAddFavorite = (payload) => {
     return {
         type: ADD_FAVORITE,
@@ -29,13 +37,14 @@ export const actionAddFavorite = (payload) => {
 
 export const failure = () => ({ type: LOADED_FAILURE })
 
-export function fetchQuestions() {
+export function fetchQuestions(userId) {
     return async dispatch => {
         dispatch(loading())
         try {
             const response = await fetch(
-                `${URL_BASE}/getAll`
+                `${URL_BASE}/getAll/${userId}`
             )
+
             const data = await response.json()
             dispatch(success({ questions: data, redirect: null }))
         } catch (error) {
@@ -86,6 +95,7 @@ export function fetchQuestion(id) {
     }
 }
 
+
 export function postQuestion(question) {
     return async dispatch => {
         dispatch(loading())
@@ -131,6 +141,27 @@ export function postFavoriteQuestion(favoriteQuestion) {
 }
 
 
+export function postAnswer(answer) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/add`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(answer)
+                }
+            )
+            dispatch(success({redirect: `/question/${answer.questionId}`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
 export function deleteQuestion(id) {
     return async dispatch => {
         
@@ -151,21 +182,20 @@ export function deleteQuestion(id) {
     }
 }
 
-export function postAnswer(answer) {
+export function deleteAnswer(id) {
     return async dispatch => {
-        dispatch(loading())
+        
         try {
-            await fetch(`${URL_BASE}/add`,
+            await fetch(`${URL_BASE}/deleteAnswer/${id}`,
                 {
-                    method: 'POST',
+                    method: 'DELETE',
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(answer)
+                    }
                 }
             )
-            dispatch(success({redirect: `/question/${answer.questionId}`}));
+            dispatch(actionDeleteAnswer(id));
         } catch (error) {
             dispatch(failure())
         }

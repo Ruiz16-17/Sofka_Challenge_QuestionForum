@@ -1,15 +1,37 @@
-import React from 'react'
+import React from 'react';
+import './css/footer.css';
 
 export const Footer = () => {
     return (
-        <footer>
-            <h2>Forum tecnology</h2>
+        <footer className="footer">
+            <div className="container">
+                <div className="row">
 
-            <p>
-                In this forum you can send questions and answer questions
-                <b/>
-                to help de tecnology community
-            </p>
+                    <div className="footer-col">
+                        <h4>Created by Sebastian Ruiz Gallego</h4>
+                        <ul>
+                            <li>
+                                <a href="#">Github Repository</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-col">
+                        <h4>Follow sofka</h4>
+                        <div className="social-links">
+
+                            <a href="https://www.facebook.com/sofkatech"><i className="fab fa-facebook-f"></i></a>
+                        
+                        </div>
+                        <div className="social-links">
+    
+                            <a href="https://www.instagram.com/sofka_technologies/?hl=es"><i className="fab fa-instagram"></i></a>
+                                
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 
         </footer>
     )

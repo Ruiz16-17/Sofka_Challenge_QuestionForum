@@ -10,14 +10,9 @@ const FavoriteQuestionsPage = ({ dispatch, loading, questions, hasErrors, userId
         dispatch(fetchFavoriteQuestions(userId));
     }, [dispatch, userId])
 
-    const findFavoriteQuestion = (questionId) => {
-        return favoriteQuestions.find(element => element.id === questionId);
-    }
-
     const onAddFavoriteQuestion = (questionId, id) => {
 
         const data = {
-            id: findFavoriteQuestion(questionId),
             userId: id,
             questionId: questionId
         };
@@ -35,14 +30,12 @@ const FavoriteQuestionsPage = ({ dispatch, loading, questions, hasErrors, userId
             favoriteQuestions.map(question => <Question
                 key={question.id}
                 question={question}
-                isFavorite={findFavoriteQuestion(question.id)}
                 userId={userId}
                 onAddFavoriteQuestion={onAddFavoriteQuestion}
                 excerpt />)
             :
             <p>Has not added favorites.</p>
         )
-
 
     }
 

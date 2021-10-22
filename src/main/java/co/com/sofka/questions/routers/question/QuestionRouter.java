@@ -23,10 +23,12 @@ public class QuestionRouter {
 
     @Bean
     public RouterFunction<ServerResponse> getAll(ListUseCase listUseCase) {
-        return route(GET("/getAll"),
+        return route(GET("/getAll/{userId}"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(listUseCase.get(), QuestionDTO.class))
+                        .body(BodyInserters
+                                .fromPublisher(listUseCase
+                                        .getMappersQuestions(request.pathVariable("userId")), QuestionDTO.class))
         );
     }
 

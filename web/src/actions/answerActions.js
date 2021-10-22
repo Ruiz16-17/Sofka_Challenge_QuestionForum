@@ -11,27 +11,6 @@ export const actionLike = (payload) => {
     }
 }
 
-export const failure = () => ({ type: 'Falló' })
+export const failure = () => ({ type: 'Fail' })
 
-export function likeAnswer(answer) {
-    return async dispatch => {
-        
-        try {
-            await fetch(`${URL_BASE}/likeAnswer`,
-                {
-                    method: 'PUT',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(answer)
-                }
-            )
-            
-            dispatch(actionLike(answer));
-        } catch (error) {
-            dispatch(failure())
-            
-        }
-    }
-}
+

@@ -28,7 +28,7 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
             questionId : id,
             answer : content
         };
-            console.log(data);
+        
         validateInput(data) && dispatch(postAnswer(data));
     }
     

@@ -1,21 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Question = ({ question, excerpt, onDelete, userId, onAddFavoriteQuestion, isFavorite }) => (
+export const Question = ({ question, excerpt, onDelete, userId, onAddFavoriteQuestion}) => (
   <article className={excerpt ? 'question-excerpt' : 'question'}>
+    
+    <p>{question.category}  - <small>{question.type}</small></p>
 
     <h2>
       <div dangerouslySetInnerHTML={{ __html:question.question }} />
     </h2>
-
-    <p>{question.category}  - <small>{question.type}</small></p>
-
+{/* {console.log(question)} */}
     {
 
       userId && (
 
         <button className={
-          isFavorite
+          question.favorite
             ? "heart right"
             : "black_heart right"
         } onClick={() => onAddFavoriteQuestion(question.id, userId)}>

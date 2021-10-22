@@ -19,12 +19,12 @@ class ListUseCaseTest {
      ListUseCase listUseCase;
 
 
-    @BeforeEach
+   /* @BeforeEach
     public void setup(){
         MapperUtils mapperUtils = new MapperUtils();
         repository = mock(QuestionRepository.class);
-        listUseCase = new ListUseCase(mapperUtils, repository);
-    }
+        listUseCase = new ListUseCase(repository, mapperUtils, repository);
+    }*/
 
     @Test
      void getValidationTest(){

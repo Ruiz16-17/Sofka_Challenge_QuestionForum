@@ -5,10 +5,9 @@ export const initialState = {
   hasErrors: false,
   questions: [],
   question: {
-    answer: []
+    answers: []
   },
   redirect: null,
-  isFavorite : false
 }
 
 export default function questionsReducer(state = initialState, action) {
@@ -21,9 +20,27 @@ export default function questionsReducer(state = initialState, action) {
       return { ...state, loading: false, hasErrors: true }
     case actionsQuestion.DELETE:
       return { ...state, questions: state.questions.filter(question => question.id !== action.payload) }
-      case actionsQuestion.ADD_FAVORITE:
-        console.log("asda");
-        return { ...state, isFavorite : true }
+    case actionsQuestion.DELETE_ANSWER:
+
+      return { ...state, question: { ...state.question, answers: state.question.answers.filter(element => element.id !== action.payload) } }
+    case actionsQuestion.ADD_FAVORITE:
+       
+      // console.log(action.payload.questionId);
+
+      const updateItem = state.questions;
+      const listUPdateQuestions = updateItem.map((element) => {
+        
+        if(element.id === action.payload.questionId){
+          element.favorite = !element.favorite;
+
+          return element;
+        }
+
+        return element;
+      })
+
+
+  return { ...state, questions: listUPdateQuestions}
     default:
       return state
   }

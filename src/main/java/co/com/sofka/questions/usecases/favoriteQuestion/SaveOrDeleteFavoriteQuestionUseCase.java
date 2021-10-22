@@ -28,11 +28,12 @@ public class SaveOrDeleteFavoriteQuestionUseCase implements SaveFavoriteQuestion
 
     public Mono<String> saveOrDeleteFavoriteQuestion(FavoriteQuestionDTO favoriteQuestionDTO) {
         System.out.println(favoriteQuestionDTO.isFavorite());
-
-        if (true) {
+        /*
+        if (false) {
             return deleteFavoriteQuestionUseCase.apply("6171e2472ac0f42843d52004").thenReturn("");
         }
         favoriteQuestionDTO.setFavorite(true);
+        */
         apply(favoriteQuestionDTO);
         return apply(favoriteQuestionDTO);
     }
